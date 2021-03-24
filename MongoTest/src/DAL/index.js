@@ -1,7 +1,8 @@
 const { MongoClient } = require("mongodb");
+import { connObj } from "../config/connObj";
 // Replace the uri string with your MongoDB deployment's connection string.
 //const uri = "mongodb+srv://<user>:<password>@<cluster-url>?retryWrites=true&w=majority";
-const uri = "mongodb+srv://Deb:Debasi@12@debcluster.lovso.mongodb.net?retryWrites=true&w=majority";
+const uri = connObj.databaseURL;
 const client = new MongoClient(uri);
 async function run() {
   try {
@@ -12,7 +13,7 @@ async function run() {
     const query = { title: 'Back to the Future' };
     const movie = await collection.findOne(query);
 
-    console.log("Inside Mongo run",movie);
+    console.log("Inside Mongo run", movie);
     return movie;
   } finally {
     // Ensures that the client will close when you finish/error
@@ -24,7 +25,7 @@ async function run() {
 
 module.exports = function () {
   return {
-    run : run
-   // terminate : 
+    run: run
+    // terminate : 
   }
 }
