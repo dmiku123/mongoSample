@@ -1,5 +1,6 @@
 const { MongoClient } = require("mongodb");
-import { connObj } from "../config/connObj";
+const connObj = require("../config/connObj");
+
 // Replace the uri string with your MongoDB deployment's connection string.
 //const uri = "mongodb+srv://<user>:<password>@<cluster-url>?retryWrites=true&w=majority";
 const uri = connObj.databaseURL;
@@ -23,9 +24,7 @@ async function run() {
 
 //run().catch(console.dir);
 
-module.exports = function () {
-  return {
+module.exports = {
     run: run
     // terminate : 
   }
-}

@@ -1,17 +1,40 @@
-var express = require('express');
-var router = express.Router();
+//controllers
+const landingRouter = require('./controllers/landing');
+const crudRouter = require('./controllers/CrudRoute');
 
-/* GET basic */
-router.get('/', function(req, res, next) {
-    //Enabled when templeting is integrated
-  //res.render('index', { title: 'Express' });
-  res.send('API router test successful');
-});
+const apiRouter = require('./apis/index');
 
-/* GET subRoute */
-router.get('/subTest', function(req, res, next) {
-  //Enabled when templeting is integrated
-//res.render('index', { title: 'Express' });
-res.send('API sub router test successful');
-});
-module.exports = router;
+//Services
+const MongoClientStub = require('../services/index');
+
+const init = (server) => {
+  server.get('*', function (req, res, next) {
+    console.log('Original Request was made to: ' + req.originalUrl);
+    return next();
+  });
+
+  server.get('/', function (req, res) {
+    res.redirect('/landing');
+  });
+  // this is calling controller directly and not supposed to be version controled and mostly static
+  //http://localhost:3000/landing
+  server.use('/landing', landingRouter)
+
+  //service test and will be phased out later
+  //http://localhost:3000/testMongo
+  server.get('/testMongo', function (req, res) {
+    MongoClientStub.run()
+      .then(movie => res.send(movie))
+      .catch(console.dir);
+  })
+
+  //basic path and mewthod test and will be phased out
+  //http://localhost:3000/crudRoute
+  server.use('/crudRoute', crudRouter)
+
+   server.use('/api', apiRouter);
+  // server.use('/error', errorRoute);
+}
+module.exports = {
+  init: init
+}
