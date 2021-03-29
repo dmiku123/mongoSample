@@ -1,7 +1,7 @@
 const passport = require('passport');
 const express = require('express');
 
-const {detailsService,vacationsService} = require('../../services/employees/index');
+const {detailsService,vacationsService} = require('../../services/employee/index');
 
 let router = express.Router();
 

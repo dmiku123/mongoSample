@@ -5,7 +5,7 @@ const crudRouter = require('./controllers/CrudRoute');
 const apiRouter = require('./apis/index');
 
 //Services
-const MongoClientStub = require('../services/index');
+const MongoClientStub = require('../services/mongoMovieSample');
 
 const init = (server) => {
   server.get('*', function (req, res, next) {

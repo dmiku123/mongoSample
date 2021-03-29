@@ -1,12 +1,11 @@
 const express = require('express');
-const bodyParser = require('body-parser');
-const logger = require('morgan');
+//const bodyParser = require('body-parser');
+//const logger = require('morgan');
 //const passport = require('passport');
-const cookieParser = require('cookie-parser');
-const cors = require('cors');
+//const cookieParser = require('cookie-parser');
+//const cors = require('cors');
 const hostConfig  = require("../config/hostObj") ;
-
-var Route = require("../routes/index");
+const Route = require("../routes/index");
 
 module.exports = function () {
   let app = express();

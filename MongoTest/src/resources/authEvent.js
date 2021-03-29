@@ -1,4 +1,4 @@
-const eventCode = {
+const authEventCode = {
     onUserPassEmpty: {
         success: false,
         message: 'Please enter username and password.'
@@ -16,4 +16,4 @@ const eventCode = {
         message: 'Password updated successfully.'
     }
 }
-module.exports = eventCode;
+module.exports = authEventCode;
